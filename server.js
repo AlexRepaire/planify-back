@@ -1,5 +1,6 @@
 import express from "express";
 import authController from "./src/controllers/AuthController.js";
+import taskController from "./src/controllers/TaskController.js";
 import connectDb from "./src/config/db.js";
 
 const app = express();
@@ -16,13 +17,15 @@ app.use((req, res, next) => {
 
 connectDb();
 
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb' }));
 
 app.get('/', (req, res) => {
     res.send('API Running');
 });
 
 app.use('/api/auth', authController);
+app.use('/api/tasks', taskController);
 
 const PORT = process.env.PORT || 5008;
 

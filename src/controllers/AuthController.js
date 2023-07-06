@@ -15,7 +15,7 @@ router.post('/login', [
 
 /**
  * @route       POST api/auth
- * @description Authenticate user & get token
+ * @description register user & get token
  * @access      Public
  */
 router.post('/register', AuthService.signup);
